@@ -1,0 +1,70 @@
+﻿<Window x:Class="WebAPIClient.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WebAPIClient"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="500" Width="800">
+    <Grid>
+        <ScrollViewer>
+        <StackPanel HorizontalAlignment="Left" Height="400" Margin="32,28,0,0" VerticalAlignment="Top" Width="733">           
+        <Border Background="GhostWhite" BorderBrush="SandyBrown" BorderThickness="3" >
+         <TextBlock Name="responseDisp" FontSize="16" Background="Aquamarine" TextWrapping="Wrap" Text="Response" Height="217" Margin="0,0,0.333,0"/>            
+        </Border>
+           <ListView Margin="10" Name="lvDataBinding" MaxHeight="100" >
+                <!-- 
+               <ListView.ItemTemplate>
+                <DataTemplate>
+                    <WrapPanel>
+                        <TextBlock Text="Name: " />
+                        <TextBlock Text="{Binding name}" FontWeight="Bold" />
+                        <TextBlock Text=", " />
+                        <TextBlock Text="Age: " />
+                        <TextBlock Text="{Binding age}" FontWeight="Bold" />
+                        <TextBlock Text=" (" />
+                        <TextBlock Text="{Binding id}" TextDecorations="Underline" Foreground="Blue" Cursor="Hand" />
+                        <TextBlock Text=")" />
+                        <Button Click="delSend" Tag="{Binding id}" Content="DEL"/>
+                    </WrapPanel>
+                </DataTemplate>
+               </ListView.ItemTemplate>
+                -->
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Id" Width="50" DisplayMemberBinding="{Binding id}" />
+                            <GridViewColumn Header="Name" Width="120" DisplayMemberBinding="{Binding name}" />
+                            <GridViewColumn Header="Age" Width="50" DisplayMemberBinding="{Binding age}" />
+                            <GridViewColumn Header="Delete" Width="50">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button
+                                          Content="DEL"
+                                          Tag="{Binding id}"                     
+                                          Margin="0"
+                                          VerticalAlignment="Center"
+                                          Click="delSend" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="Edit" Width="50">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button
+                                          Content="EDIT"
+                                          Tag="{Binding id}"                     
+                                          Margin="0"
+                                          VerticalAlignment="Center"
+                                          Click="editSend" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            
+        <Button Content="New user" Name="getBtn" Click="postSend"/>      
+    </StackPanel>
+        </ScrollViewer>
+ </Grid>
+</Window>
